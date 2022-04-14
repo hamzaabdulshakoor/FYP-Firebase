@@ -9,7 +9,7 @@ import Todo from "./Todo";
 import DisplayTodo from "./DisplayTodo";
 
 
-function Program (props) {   
+function ProgramTrainee (props) {   
 
   const [week, setWeek] = useState("")
   const [sundayTasks, setSundayTasks] = useState([])
@@ -127,6 +127,10 @@ function Program (props) {
     </Card>
   }
 
+
+    // if(loading){
+    //   return <h1>Loading...</h1>
+    // }else{
       return(
         <Card className="center">
           <Card.Body>
@@ -139,26 +143,32 @@ function Program (props) {
             <Card.Header>Let's Start The Journey - <button onClick={saveWeek}>Save edited week</button></Card.Header>
   
             <CardDeck>
-            <Todo list={sundayTasks} editList={setSundayTasks} day="Sunday"/>     
-            <DisplayTodo list={sundayFeedback} day="Feedback"/>     
+            <DisplayTodo list={sundayTasks} day="Sunday"/>     
+            <Todo list={sundayFeedback} editList={setSundayFeedback} day="Feedback"/>     
   
             
                
             </CardDeck>
             <CardDeck>
-            <Todo list={mondayTasks} editList={setMondayTasks} day="Monday"/>     
-            <DisplayTodo list={mondayFeedback} day="Feedback"/>     
+            <DisplayTodo list={mondayTasks} day="Monday"/>     
+            <Todo list={mondayFeedback} editList={setMondayFeedback} day="Feedback"/>     
               
             </CardDeck>
   
   
-           
+            {/* <DisplayTodo list={wednesdayTasks} day="Wednesday"/>     
+            <DisplayTodo list={thursdayTasks} day="Thursday"/>     
+            <DisplayTodo list={fridayTasks} day="Friday"/>     
+            <DisplayTodo list={saturdayTasks} day="Saturday"/>    */}
           </Card.Body>
         </Card>
       
       )
+    // }
+   
+     
   
   
 }
 
-export default withRouter(Program)
+export default withRouter(ProgramTrainee)

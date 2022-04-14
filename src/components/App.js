@@ -3,7 +3,6 @@ import Login from "./Login";
 import ErrorPage from "./ErrorPage";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-
 import logout from "./Logout";
 import Home from "./Home";
 import Chat from "./Chat";
@@ -12,6 +11,7 @@ import Register from "./Register";
 import CreateProgram from "./CreateProgram";
 import Payment from "./Payment";
 import Complete from "./Complete";
+import HomeTrainee from "./HomeTrainee";
 
 class App extends Component {
   state = {
@@ -73,6 +73,11 @@ class App extends Component {
                 exact
                 path="/home"
                 render={(history) => <Home user={this.state.user} users={this.state.users} />}
+              />
+              <Route
+                exact
+                path="/home-trainee"
+                render={(history) => <HomeTrainee user={this.state.user} users={this.state.users} />}
               />
               <Route
                 exact

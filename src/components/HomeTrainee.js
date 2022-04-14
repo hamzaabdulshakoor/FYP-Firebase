@@ -7,9 +7,10 @@ import ChatUserList from "./ChatUserList";
 import TraineeUserList from "./TraineeUserList";
 import firebase from "../utils/firebase";
 import Program from "./Program";
+import ProgramTrainee from "./ProgramTrainee";
 
 
-export default function Home (props) {
+export default function HomeTrainee (props) {
 
   const [selectedUser, setSelectedUser] = useState({})
   const [trainees, setTrainees] = useState([])
@@ -44,8 +45,7 @@ export default function Home (props) {
     return (
       <div>
         <Nav user={props.user} />
-        <TraineeUserList user={props.user} users={trainees} setSelectedUser={setSelectedUser}/>
-        <Program user={props.user} users={props.users} trainee={selectedUser}/>
+        <ProgramTrainee user={props.user} users={props.users} trainee={props.user}/>
       </div>
     );
   

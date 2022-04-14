@@ -11,7 +11,7 @@ import DisplayTodo from "./DisplayTodo";
 
 function Program (props) {   
 
-  const [week, setWeek] = useState("")
+  const [week, setWeek] = useState("WK1")
   const [sundayTasks, setSundayTasks] = useState([])
   const [sundayFeedback, setSundayFeedback] = useState([])
   const [mondayFeedback, setMondayFeedback] = useState([])
@@ -21,54 +21,38 @@ function Program (props) {
   const [thursdayTasks, setThursdayTasks] = useState([])
   const [fridayTasks, setFridayTasks] = useState([])
   const [saturdayTasks, setSaturdayTasks] = useState([])
-  const [trainee, setTrainee] = useState(false)
-  const [loading, setLoading] = useState(false)
+  const [trainee, setTrainee] = useState('')
 
 
   useEffect(() => {
     console.log("week activated me")
-    console.log(props.trainee.id)
 
-    if(props.trainee.id){
-
-      firebase
+    firebase
       .firestore().collection('users').doc(props.trainee.id).get()
         .then(snapshot => {
           setTrainee(snapshot.data())
-
-          if(trainee){
-            if(trainee.program){
-              if(Object.keys(trainee.program).length!==0){
-                if(week!==""){
-                setLoading(false); 
-                setSundayTasks(trainee.program[week].sunday.tasks)
-                setSundayFeedback(trainee.program[week].sunday.feedback)
-                setMondayTasks(trainee.program[week].monday.tasks)
-                setMondayFeedback(trainee.program[week].monday.feedback)
-                setTuesdayTasks(trainee.program[week].tuesday.tasks)
-                setWednesdayTasks(trainee.program[week].wednesday.tasks)
-                setThursdayTasks(trainee.program[week].thursday.tasks)
-                setFridayTasks(trainee.program[week].friday.tasks)
-                setSaturdayTasks(trainee.program[week].saturday.tasks)
-
-                }
-                
-              }
-
-            }
-           
-          }
-
-            
-
+        
+        
         })
+
+    
+
+    if(props.trainee.program){
+      if(Object.keys(props.trainee.program).length!==0){
+        setSundayTasks(props.trainee.program[week].sunday.tasks)
+        setSundayFeedback(props.trainee.program[week].sunday.feedback)
+        setMondayTasks(props.trainee.program[week].monday.tasks)
+        setMondayFeedback(props.trainee.program[week].monday.feedback)
+        setTuesdayTasks(props.trainee.program[week].tuesday.tasks)
+        setWednesdayTasks(props.trainee.program[week].wednesday.tasks)
+        setThursdayTasks(props.trainee.program[week].thursday.tasks)
+        setFridayTasks(props.trainee.program[week].friday.tasks)
+        setSaturdayTasks(props.trainee.program[week].saturday.tasks)
+      }
     }
+    
   
-  },[props.trainee.id,week,props.trainee])
-
-
-
-
+  },[props.trainee.id,week])
   
   const handleChangeWeek = (e)=>{
     e.preventDefault();
@@ -127,36 +111,39 @@ function Program (props) {
     </Card>
   }
 
-      return(
-        <Card className="center">
-          <Card.Body>
-          <select  onChange={handleChangeWeek}>
-          <option value="">Select week</option>
-          {trainee && Object.keys(trainee.program).sort().map((p,i)=><option key={i} value={p}>{p}</option>)} 
+    return(
+      <Card className="center">
+        <Card.Body>
+        <select onChange={handleChangeWeek}>
+        {Object.keys(props.trainee.program).sort().map((p,i)=><option key={i} value={p}>{p}</option>)} 
+          
+        </select>
+       
+          <Card.Header>Let's Start The Journey - <button onClick={saveWeek}>Save edited week</button></Card.Header>
+
+          <CardDeck>
+          <Todo list={sundayTasks} editList={setSundayTasks} day="Sunday"/>     
+          <DisplayTodo list={sundayFeedback} day="Feedback"/>     
+
+          
+             
+          </CardDeck>
+          <CardDeck>
+          <DisplayTodo list={mondayTasks} day="Monday"/>     
+          <DisplayTodo list={tuesdayTasks} day="Feedback"/>    
             
-          </select>
-         
-            <Card.Header>Let's Start The Journey - <button onClick={saveWeek}>Save edited week</button></Card.Header>
-  
-            <CardDeck>
-            <Todo list={sundayTasks} editList={setSundayTasks} day="Sunday"/>     
-            <DisplayTodo list={sundayFeedback} day="Feedback"/>     
-  
-            
-               
-            </CardDeck>
-            <CardDeck>
-            <Todo list={mondayTasks} editList={setMondayTasks} day="Monday"/>     
-            <DisplayTodo list={mondayFeedback} day="Feedback"/>     
-              
-            </CardDeck>
-  
-  
-           
-          </Card.Body>
-        </Card>
-      
-      )
+          </CardDeck>
+
+
+          {/* <DisplayTodo list={wednesdayTasks} day="Wednesday"/>     
+          <DisplayTodo list={thursdayTasks} day="Thursday"/>     
+          <DisplayTodo list={fridayTasks} day="Friday"/>     
+          <DisplayTodo list={saturdayTasks} day="Saturday"/>    */}
+        </Card.Body>
+      </Card>
+    
+    )
+     
   
   
 }
