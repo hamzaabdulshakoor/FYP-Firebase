@@ -1,6 +1,6 @@
-import React, { Component,useState } from "react";
+import React, { useState } from "react";
 
-import { Redirect } from "react-router";
+import { Redirect,useHistory  } from "react-router";
 import firebase from "../utils/firebase";
 import Nav from "./Nav";
 import Card from "react-bootstrap/Card";
@@ -10,6 +10,7 @@ import Todo from "./Todo";
 
 export default function CreateProgram(props) {
 
+  const history = useHistory();
   const [numOfWeeks, setNumOfWeeks] = useState(1)
   const [sundayTasks, setSundayTasks] = useState([])
   const [mondayTasks, setMondayTasks] = useState([])
@@ -24,6 +25,7 @@ export default function CreateProgram(props) {
   }
 
   const insertProgramToFirebase = (newProgram) => {
+    console.log(props.traineeID)
     firebase
       .firestore()
       .collection("users")
@@ -34,7 +36,7 @@ export default function CreateProgram(props) {
       })
       .then(() => {
         alert("User edited successfully");
-        return this.props.history.push("/home");
+        return history.push("/home");
       })
       .catch((error) => {
         console.error("Error writing document: ", error);
@@ -114,4 +116,5 @@ export default function CreateProgram(props) {
       </div>
     );
 }
+
 

@@ -14,16 +14,20 @@ function ProgramTrainee (props) {
   const [week, setWeek] = useState("")
   const [sundayTasks, setSundayTasks] = useState([])
   const [sundayFeedback, setSundayFeedback] = useState([])
-  const [mondayFeedback, setMondayFeedback] = useState([])
   const [mondayTasks, setMondayTasks] = useState([])
+  const [mondayFeedback, setMondayFeedback] = useState([])
   const [tuesdayTasks, setTuesdayTasks] = useState([])
+  const [tuesdayFeedback, setTuesdayFeedback] = useState([])
   const [wednesdayTasks, setWednesdayTasks] = useState([])
+  const [wednesdayFeedback, setWedensdayFeedback] = useState([])
   const [thursdayTasks, setThursdayTasks] = useState([])
+  const [thursdayFeedback, setThursdayFeedback] = useState([])
   const [fridayTasks, setFridayTasks] = useState([])
+  const [fridayFeedback, setFridayFeedback] = useState([])
   const [saturdayTasks, setSaturdayTasks] = useState([])
+  const [saturdayFeedback, setSaturdayFeedback] = useState([])
   const [trainee, setTrainee] = useState(false)
   const [loading, setLoading] = useState(false)
-
 
   useEffect(() => {
     console.log("week activated me")
@@ -41,15 +45,27 @@ function ProgramTrainee (props) {
               if(Object.keys(trainee.program).length!==0){
                 if(week!==""){
                 setLoading(false); 
+                
                 setSundayTasks(trainee.program[week].sunday.tasks)
                 setSundayFeedback(trainee.program[week].sunday.feedback)
+
                 setMondayTasks(trainee.program[week].monday.tasks)
                 setMondayFeedback(trainee.program[week].monday.feedback)
+
                 setTuesdayTasks(trainee.program[week].tuesday.tasks)
+                setTuesdayFeedback(trainee.program[week].tuesday.feedback)
+
                 setWednesdayTasks(trainee.program[week].wednesday.tasks)
+                setWedensdayFeedback(trainee.program[week].wednesday.feedback)
+
                 setThursdayTasks(trainee.program[week].thursday.tasks)
+                setThursdayFeedback(trainee.program[week].thursday.feedback)
+
                 setFridayTasks(trainee.program[week].friday.tasks)
+                setFridayFeedback(trainee.program[week].friday.feedback)
+
                 setSaturdayTasks(trainee.program[week].saturday.tasks)
+                setSaturdayFeedback(trainee.program[week].saturday.feedback)
 
                 }
                 
@@ -89,11 +105,11 @@ function ProgramTrainee (props) {
             ...props.trainee.program[week],
             sunday:{tasks:sundayTasks,feedback: sundayFeedback},
             monday:{tasks:mondayTasks,feedback: mondayFeedback},
-            // tuesday:{tasks:tuesdayTasks,feedback: Array(tuesdayTasks.length).fill("")},
-            // wednesday:{tasks:wednesdayTasks,feedback: Array(wednesdayTasks.length).fill("")},
-            // thursday:{tasks:thursdayTasks,feedback: Array(thursdayTasks.length).fill("")},
-            // friday:{tasks:fridayTasks,feedback: Array(fridayTasks.length).fill("")},
-            // saturday:{tasks:saturdayTasks,feedback: Array(saturdayTasks.length).fill("")},
+            tuesday:{tasks:tuesdayTasks,feedback: tuesdayFeedback},
+            wednesday:{tasks:wednesdayTasks,feedback: wednesdayFeedback},
+            thursday:{tasks:thursdayTasks,feedback: thursdayFeedback},
+            friday:{tasks:fridayTasks,feedback: fridayFeedback},
+            saturday:{tasks:saturdayTasks,feedback: saturdayFeedback},           
           }
 
         }
@@ -121,16 +137,11 @@ function ProgramTrainee (props) {
   }else if(Object.keys(props.trainee.program).length===0){
       return <Card className="center ">
       <Card.Body className="">
-        <h1>This user doesn't have a live program</h1>  
-        <button onClick={handleAvailability}>Create</button>  
+        <h1>Connect with a trainer to get a program!</h1>  
       </Card.Body>
     </Card>
   }
 
-
-    // if(loading){
-    //   return <h1>Loading...</h1>
-    // }else{
       return(
         <Card className="center">
           <Card.Body>
@@ -145,26 +156,46 @@ function ProgramTrainee (props) {
             <CardDeck>
             <DisplayTodo list={sundayTasks} day="Sunday"/>     
             <Todo list={sundayFeedback} editList={setSundayFeedback} day="Feedback"/>     
-  
-            
-               
             </CardDeck>
+
             <CardDeck>
             <DisplayTodo list={mondayTasks} day="Monday"/>     
-            <Todo list={mondayFeedback} editList={setMondayFeedback} day="Feedback"/>     
-              
+            <Todo list={mondayFeedback} editList={setMondayFeedback} day="Feedback"/>         
+            </CardDeck>
+            
+            <CardDeck>
+            <DisplayTodo list={tuesdayTasks} day="Tuesday"/>     
+            <Todo list={tuesdayFeedback} editList={setTuesdayFeedback} day="Feedback"/>         
             </CardDeck>
   
   
-            {/* <DisplayTodo list={wednesdayTasks} day="Wednesday"/>     
+            <CardDeck>
+            <DisplayTodo list={wednesdayTasks} day="Wednesday"/>     
+            <Todo list={wednesdayFeedback} editList={setWedensdayFeedback} day="Feedback"/>         
+            </CardDeck>
+  
+  
+            <CardDeck>
             <DisplayTodo list={thursdayTasks} day="Thursday"/>     
+            <Todo list={thursdayFeedback} editList={setThursdayFeedback} day="Feedback"/>         
+            </CardDeck>
+  
+  
+            <CardDeck>
             <DisplayTodo list={fridayTasks} day="Friday"/>     
-            <DisplayTodo list={saturdayTasks} day="Saturday"/>    */}
+            <Todo list={fridayFeedback} editList={setFridayFeedback} day="Feedback"/>         
+            </CardDeck>
+  
+  
+            <CardDeck>
+            <DisplayTodo list={saturdayTasks} day="Saturday"/>     
+            <Todo list={saturdayFeedback} editList={setSaturdayFeedback} day="Feedback"/>         
+            </CardDeck>
+  
           </Card.Body>
         </Card>
       
       )
-    // }
    
      
   

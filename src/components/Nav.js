@@ -8,9 +8,11 @@ class Nav extends Component {
       <nav className="nav d-flex justify-content-around border-bottom border-primary mb-2">
         <ul>
           <li>
-            <NavLink to="/home" exact activeClassName="active">
+            {this.props.user.type==="trainee"? <NavLink to="/home-trainee" exact activeClassName="active">
               Home
-            </NavLink>
+            </NavLink> : <NavLink to="/home" exact activeClassName="active">
+              Home
+            </NavLink>}
           </li>
           <li>
             <NavLink to="/chat" exact activeClassName="active">

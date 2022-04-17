@@ -35,8 +35,11 @@ class Login extends Component {
     onLogin(user);
 
     if (user) {
-      // return this.props.history.push("/home");
+      if(user.type==="trainee")
       return this.props.history.push("/home-trainee");
+      
+      return this.props.history.push("/home");
+
     } else {
       alert("Wrong email or password");
       this.setState({ email: "", password: "" });

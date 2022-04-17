@@ -14,13 +14,18 @@ function Program (props) {
   const [week, setWeek] = useState("")
   const [sundayTasks, setSundayTasks] = useState([])
   const [sundayFeedback, setSundayFeedback] = useState([])
-  const [mondayFeedback, setMondayFeedback] = useState([])
   const [mondayTasks, setMondayTasks] = useState([])
+  const [mondayFeedback, setMondayFeedback] = useState([])
   const [tuesdayTasks, setTuesdayTasks] = useState([])
+  const [tuesdayFeedback, setTuesdayFeedback] = useState([])
   const [wednesdayTasks, setWednesdayTasks] = useState([])
+  const [wednesdayFeedback, setWedensdayFeedback] = useState([])
   const [thursdayTasks, setThursdayTasks] = useState([])
+  const [thursdayFeedback, setThursdayFeedback] = useState([])
   const [fridayTasks, setFridayTasks] = useState([])
+  const [fridayFeedback, setFridayFeedback] = useState([])
   const [saturdayTasks, setSaturdayTasks] = useState([])
+  const [saturdayFeedback, setSaturdayFeedback] = useState([])
   const [trainee, setTrainee] = useState(false)
   const [loading, setLoading] = useState(false)
 
@@ -41,15 +46,28 @@ function Program (props) {
               if(Object.keys(trainee.program).length!==0){
                 if(week!==""){
                 setLoading(false); 
+
                 setSundayTasks(trainee.program[week].sunday.tasks)
                 setSundayFeedback(trainee.program[week].sunday.feedback)
+
                 setMondayTasks(trainee.program[week].monday.tasks)
                 setMondayFeedback(trainee.program[week].monday.feedback)
+
                 setTuesdayTasks(trainee.program[week].tuesday.tasks)
+                setTuesdayFeedback(trainee.program[week].tuesday.feedback)
+
                 setWednesdayTasks(trainee.program[week].wednesday.tasks)
+                setWedensdayFeedback(trainee.program[week].wednesday.feedback)
+
                 setThursdayTasks(trainee.program[week].thursday.tasks)
+                setThursdayFeedback(trainee.program[week].thursday.feedback)
+
                 setFridayTasks(trainee.program[week].friday.tasks)
+                setFridayFeedback(trainee.program[week].friday.feedback)
+
                 setSaturdayTasks(trainee.program[week].saturday.tasks)
+                setSaturdayFeedback(trainee.program[week].saturday.feedback)
+
 
                 }
                 
@@ -89,11 +107,11 @@ function Program (props) {
             ...props.trainee.program[week],
             sunday:{tasks:sundayTasks,feedback: sundayFeedback},
             monday:{tasks:mondayTasks,feedback: mondayFeedback},
-            // tuesday:{tasks:tuesdayTasks,feedback: Array(tuesdayTasks.length).fill("")},
-            // wednesday:{tasks:wednesdayTasks,feedback: Array(wednesdayTasks.length).fill("")},
-            // thursday:{tasks:thursdayTasks,feedback: Array(thursdayTasks.length).fill("")},
-            // friday:{tasks:fridayTasks,feedback: Array(fridayTasks.length).fill("")},
-            // saturday:{tasks:saturdayTasks,feedback: Array(saturdayTasks.length).fill("")},
+            tuesday:{tasks:tuesdayTasks,feedback: tuesdayFeedback},
+            wednesday:{tasks:wednesdayTasks,feedback: wednesdayFeedback},
+            thursday:{tasks:thursdayTasks,feedback: thursdayFeedback},
+            friday:{tasks:fridayTasks,feedback: fridayFeedback},
+            saturday:{tasks:saturdayTasks,feedback: saturdayFeedback},  
           }
 
         }
@@ -140,15 +158,37 @@ function Program (props) {
   
             <CardDeck>
             <Todo list={sundayTasks} editList={setSundayTasks} day="Sunday"/>     
-            <DisplayTodo list={sundayFeedback} day="Feedback"/>     
-  
-            
-               
+            <DisplayTodo list={sundayFeedback} day="Feedback"/>               
             </CardDeck>
+
             <CardDeck>
             <Todo list={mondayTasks} editList={setMondayTasks} day="Monday"/>     
-            <DisplayTodo list={mondayFeedback} day="Feedback"/>     
-              
+            <DisplayTodo list={mondayFeedback} day="Feedback"/>           
+            </CardDeck>
+
+            <CardDeck>
+            <Todo list={tuesdayTasks} editList={setTuesdayTasks} day="Tuesday"/>     
+            <DisplayTodo list={tuesdayFeedback} day="Feedback"/>           
+            </CardDeck>
+
+            <CardDeck>
+            <Todo list={wednesdayTasks} editList={setWednesdayTasks} day="Wednesday"/>     
+            <DisplayTodo list={wednesdayFeedback} day="Feedback"/>           
+            </CardDeck>
+
+            <CardDeck>
+            <Todo list={thursdayTasks} editList={setThursdayTasks} day="Thursday"/>     
+            <DisplayTodo list={thursdayFeedback} day="Feedback"/>           
+            </CardDeck>
+
+            <CardDeck>
+            <Todo list={fridayTasks} editList={setFridayTasks} day="Friday"/>     
+            <DisplayTodo list={fridayFeedback} day="Feedback"/>           
+            </CardDeck>
+  
+            <CardDeck>
+            <Todo list={saturdayTasks} editList={setSaturdayTasks} day="Saturday"/>     
+            <DisplayTodo list={saturdayFeedback} day="Feedback"/>           
             </CardDeck>
   
   
