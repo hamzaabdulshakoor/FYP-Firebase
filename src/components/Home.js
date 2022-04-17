@@ -1,9 +1,6 @@
-import React, { Component,useState,useEffect } from "react";
+import React, {useState,useEffect } from "react";
 import { Redirect } from "react-router";
 import Nav from "./Nav";
-import { CardDeck } from "react-bootstrap";
-import ChatBox from "./ChatBox";
-import ChatUserList from "./ChatUserList";
 import TraineeUserList from "./TraineeUserList";
 import firebase from "../utils/firebase";
 import Program from "./Program";
@@ -18,7 +15,7 @@ export default function Home (props) {
   useEffect(() => {
     const ref = firebase.firestore().collection("users").where("type","==","trainee")
       setLoading(true);
-      ref.onSnapshot((querySnapshot) => {
+     return ref.onSnapshot((querySnapshot) => {
         const items = [];
         querySnapshot.forEach((doc) => {
 
@@ -44,7 +41,7 @@ export default function Home (props) {
     return (
       <div>
         <Nav user={props.user} />
-        <TraineeUserList user={props.user} users={trainees} setSelectedUser={setSelectedUser}/>
+        <TraineeUserList user={props.user} users={trainees} setSelectedUser={setSelectedUser} selectedUser={selectedUser}/>
         <Program user={props.user} users={props.users} trainee={selectedUser}/>
       </div>
     );

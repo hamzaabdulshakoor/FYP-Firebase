@@ -13,7 +13,7 @@ export default class ChatUserList extends Component {
           </Card.Header>
           <ul className="list-group">
             {this.props.users.filter(u=>u.id!==this.props.user.id).map((u) => {
-              return <ChatUser key={u.id} chatee={u} setSelectedUser={this.props.setSelectedUser} />;
+              return <ChatUser key={u.id} chatee={u} setSelectedUser={this.props.setSelectedUser} selectedUser={this.props.selectedUser}/>;
             })}
           </ul>
         </Card.Body>

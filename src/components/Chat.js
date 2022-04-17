@@ -25,7 +25,7 @@ export default class Chat extends Component {
         <Nav user={this.props.user} />
         <CardDeck>
 
-          <ChatUserList user={this.props.user} users={this.props.users} setSelectedUser={this.setSelectedUser}/>
+          <ChatUserList user={this.props.user} users={this.props.users} setSelectedUser={this.setSelectedUser} selectedUser={this.state.selectedUser}/>
           <ChatBox user={this.props.user} users={this.props.users} receiver={this.state.selectedUser}/>
         </CardDeck>
       </div>

@@ -16,7 +16,6 @@ export default function Messages (props) {
   const [receiver, setReceiver] = useState(props.receiver)  
 
   useEffect(() => {
-  console.log(receiver)
   handleMessages()
    
   }, [props.receiver])

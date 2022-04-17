@@ -10,6 +10,9 @@ export default function Messages (props) {
 
   const [messages, setMessages] = useState([])
   const [loading, setLoading] = useState(false)
+  const [loadingName, setLoadingName] = useState(false)
+  const [trainee, setTrainee] = useState(false)
+
 
   useEffect(() => {
   const ref = firebase.firestore().collection("messages").orderBy("receivedTime")
@@ -25,9 +28,18 @@ export default function Messages (props) {
       setLoading(false);
     });
   }, [props.receiver,props.user.id])
+
+  useEffect(() => {
+    setLoadingName(true)
+    firebase.firestore().collection('users').doc(props.receiver).get().then(snapshot => {
+      setTrainee(snapshot.data())
+      setLoading(false)
+    })
+  }, [props.receiver])
   
   
-  if (loading) {
+  
+  if (loading && setLoadingName) {
     return <h1>Loading....</h1>;
   }
   return(
@@ -36,6 +48,8 @@ export default function Messages (props) {
 
     
       <Card className="center ">
+
+        <Card.Header>{trainee.name}</Card.Header>
         <Card.Body className="scroll">
 
        

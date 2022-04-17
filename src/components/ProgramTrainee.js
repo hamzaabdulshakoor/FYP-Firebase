@@ -1,6 +1,6 @@
 import React, { useEffect,useState } from "react";
 import Card from "react-bootstrap/Card";
-import { CardDeck,DropdownButton,Dropdown } from "react-bootstrap";
+import { CardDeck } from "react-bootstrap";
 import firebase from "../utils/firebase";
 
 
@@ -30,8 +30,6 @@ function ProgramTrainee (props) {
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    console.log("week activated me")
-    console.log(props.trainee.id)
 
     if(props.trainee.id){
 
@@ -92,8 +90,8 @@ function ProgramTrainee (props) {
   }
 
 
-  const saveWeek = () => {
-   
+  const saveWeek = (e) => {
+   e.preventDefault()
     firebase
       .firestore()
       .collection("users")
@@ -124,10 +122,6 @@ function ProgramTrainee (props) {
 
  
 
-  const handleAvailability = () => {
-    const page = `/create/${props.trainee.id}`;
-    return props.history.push(page);
-  }
   if(!props.trainee.id){
     return  <Card className="center ">
     <Card.Body className="">

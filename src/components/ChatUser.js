@@ -10,8 +10,9 @@ class ChatUser extends Component {
   };
 
   render() {
-    const { chatee } = this.props;
-
+    const { chatee,selectedUser } = this.props;
+    console.log(chatee.id)
+    console.log(selectedUser.id)
     
 
 
@@ -19,8 +20,7 @@ class ChatUser extends Component {
 
        <a href="/home" className="text-reset text-decoration-none my-2 ">
 
-      
-        <form className="link list-group-item d-flex justify-content-between align-items-center customerHover" onClick={this.handleSelectedUser}>
+       {chatee.id === selectedUser.id? <form className="link list-group-item d-flex justify-content-between align-items-center customerHover bg-info" onClick={this.handleSelectedUser}>
         <span className="">
           {chatee.name}
         </span>
@@ -30,7 +30,18 @@ class ChatUser extends Component {
         </span>
 
 
-        </form>
+        </form>:<form className="link list-group-item d-flex justify-content-between align-items-center customerHover" onClick={this.handleSelectedUser}>
+        <span className="">
+          {chatee.name}
+        </span>
+      
+        <span href="/home" className="badge badge-warning badge-pill stretched-link">
+          {chatee.type}
+        </span>
+
+
+        </form> } 
+        
 
 
        

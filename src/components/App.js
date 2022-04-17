@@ -9,8 +9,6 @@ import Chat from "./Chat";
 import firebase from "../utils/firebase";
 import Register from "./Register";
 import CreateProgram from "./CreateProgram";
-import Payment from "./Payment";
-import Complete from "./Complete";
 import HomeTrainee from "./HomeTrainee";
 
 class App extends Component {
@@ -90,32 +88,6 @@ class App extends Component {
                 )}
               />
 
-              <Route
-                exact
-                path="/result/:checkInDate/:checkOutDate/:priceMultiplier/payment/:roomID"
-                render={(props) => (
-                  <Payment
-                    user={this.state.user}
-                    priceMultiplier={props.match.params.priceMultiplier}
-                    checkInDate={props.match.params.checkInDate}
-                    checkOutDate={props.match.params.checkOutDate}
-                    roomId={props.match.params.roomID}
-                  />
-                )}
-              />
-              <Route
-                exact
-                path="/complete/:checkInDate/:checkOutDate/:priceMultiplier/:roomID/:name"
-                render={(props) => (
-                  <Complete
-                    name={props.match.params.name}
-                    nights={props.match.params.priceMultiplier}
-                    checkInDate={props.match.params.checkInDate}
-                    checkOutDate={props.match.params.checkOutDate}
-                    roomId={props.match.params.roomID}
-                  />
-                )}
-              />
               <Route path="/logout" exact component={logout} />
               <Route path="/register" exact component={Register} />
 

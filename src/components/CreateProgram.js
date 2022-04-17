@@ -25,7 +25,6 @@ export default function CreateProgram(props) {
   }
 
   const insertProgramToFirebase = (newProgram) => {
-    console.log(props.traineeID)
     firebase
       .firestore()
       .collection("users")

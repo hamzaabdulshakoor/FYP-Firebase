@@ -1,9 +1,7 @@
 import React, { useEffect,useState } from "react";
 import Card from "react-bootstrap/Card";
-import { CardDeck,DropdownButton,Dropdown } from "react-bootstrap";
+import { CardDeck} from "react-bootstrap";
 import firebase from "../utils/firebase";
-
-
 import {  withRouter } from "react-router";
 import Todo from "./Todo";
 import DisplayTodo from "./DisplayTodo";
@@ -31,8 +29,7 @@ function Program (props) {
 
 
   useEffect(() => {
-    console.log("week activated me")
-    console.log(props.trainee.id)
+    
 
     if(props.trainee.id){
 
@@ -94,7 +91,8 @@ function Program (props) {
   }
 
 
-  const saveWeek = () => {
+  const saveWeek = (e) => {
+    e.preventDefault()
    
     firebase
       .firestore()
