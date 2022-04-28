@@ -15,6 +15,7 @@ class ChatBox extends Component {
     this.setMessages();
   }
 
+  //this is where messages in the database get filtered based on the user that is logged and the recipient, to only show messages that concern the chat between them
   setMessages = () => {
     const ref = firebase.firestore().collection("messages").orderBy("receivedTime")
     this.setLoading(true);

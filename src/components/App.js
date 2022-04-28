@@ -53,6 +53,7 @@ class App extends Component {
           {/* <LoadingBar style={{ backgroundColor: "blue", height: "5px" }} /> */}
 
           <div className="container">
+
             <Switch>
               <Route
                 exact
@@ -79,7 +80,7 @@ class App extends Component {
               />
               <Route
                 exact
-                path="/create/:id"
+                path="/create/:id" // :id is a dynamic value that changes depending on the selected trainee
                 render={(props) => (
                   <CreateProgram
                     user={this.state.user}
@@ -97,6 +98,7 @@ class App extends Component {
                 render={() => <ErrorPage user={this.state.user} />}
               />
             </Switch>
+          
           </div>
         </Fragment>
       </Router>

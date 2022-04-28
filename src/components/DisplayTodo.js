@@ -2,6 +2,7 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 
 
+// this display is static ie cannot be changed/edited for example trainee cannot edit what they are given
 export default function DisplayTodo (props) {
 
   return (

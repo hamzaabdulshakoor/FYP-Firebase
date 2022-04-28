@@ -26,7 +26,8 @@ class ChatUser extends Component {
         </span>
       
         <span href="/home" className="badge badge-warning badge-pill stretched-link">
-          {chatee.type}
+          {chatee.type} 
+          {/* type ie trainer or trainee */}
         </span>
 
 

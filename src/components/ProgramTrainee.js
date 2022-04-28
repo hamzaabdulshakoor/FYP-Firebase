@@ -91,15 +91,15 @@ function ProgramTrainee (props) {
 
 
   const saveWeek = (e) => {
-   e.preventDefault()
+   e.preventDefault() // just to stop the page from refreshing
     firebase
       .firestore()
       .collection("users")
       .doc(props.trainee.id)
       .update({
-        program:{
-          ...props.trainee.program,
-          [week]: {
+        program:{ 
+          ...props.trainee.program, // spread operator is used here because we dont know the number of weeks / no of weeks changes any time 
+          [week]: { // this updates whichever week is selected and updates the contents of it
             ...props.trainee.program[week],
             sunday:{tasks:sundayTasks,feedback: sundayFeedback},
             monday:{tasks:mondayTasks,feedback: mondayFeedback},
@@ -140,10 +140,11 @@ function ProgramTrainee (props) {
         <Card className="center">
           <Card.Body>
           <select  onChange={handleChangeWeek}>
+            {/* no of options is generated dynamically based on the program bc number of weeks varies */}
           <option value="">Select week</option>
           {trainee && Object.keys(trainee.program).sort().map((p,i)=><option key={i} value={p}>{p}</option>)} 
             
-          </select>
+          </select> 
          
             <Card.Header>Let's Start The Journey - <button onClick={saveWeek}>Save edited week</button></Card.Header>
   
